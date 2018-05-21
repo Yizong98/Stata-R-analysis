@@ -1,0 +1,21 @@
+----------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\yizong\Desktop\PSET3\PSET3.log
+  log type:  text
+ opened on:  20 May 2018, 22:01:47
+
+. do "C:\Users\yizong\Desktop\PSET3\PSET3.do"
+
+. * Zong PID A14553253
+. 
+. clear all 
+
+. log using Zong_PSET3.log, replace
+log file already open
+r(604);
+
+end of do-file
+
+r(604);
+
+. exit, clear

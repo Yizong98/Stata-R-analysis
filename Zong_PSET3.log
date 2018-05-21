@@ -1,0 +1,149 @@
+-------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\yizong\Desktop\Zong_PSET3.log
+  log type:  text
+ opened on:  20 May 2018, 21:57:18
+
+. 
+. *Question One
+. * (a)
+. * i
+. import delimited worldbank_data.csv
+(26 vars, 269 obs)
+
+. * iii
+. rename ãcountryname countryname
+
+. * iv
+. count if countryname != ""
+  264
+
+. drop if countryname == ""
+(5 observations deleted)
+
+. * v
+. list countryname  if missing(laborforcetotal)
+
+     +---------------------------+
+     |               countryname |
+     |---------------------------|
+  4. |            American Samoa |
+  5. |                   Andorra |
+  7. |       Antigua and Barbuda |
+ 11. |                     Aruba |
+ 23. |                   Bermuda |
+     |---------------------------|
+ 29. |    British Virgin Islands |
+ 39. |            Cayman Islands |
+ 54. |                   Curacao |
+ 59. |                  Dominica |
+ 69. |                   Eritrea |
+     |---------------------------|
+ 77. |             Faroe Islands |
+ 88. |                 Gibraltar |
+ 90. |                 Greenland |
+ 91. |                   Grenada |
+114. |               Isle of Man |
+     |---------------------------|
+122. |                  Kiribati |
+125. |                    Kosovo |
+139. |             Liechtenstein |
+153. |          Marshall Islands |
+157. |     Micronesia, Fed. Sts. |
+     |---------------------------|
+163. |                    Monaco |
+170. |                     Nauru |
+179. |  Northern Mariana Islands |
+181. |            Not classified |
+187. |                     Palau |
+     |---------------------------|
+203. |                San Marino |
+208. |                Seychelles |
+211. | Sint Maarten (Dutch part) |
+223. |       St. Kitts and Nevis |
+225. |  St. Martin (French part) |
+     |---------------------------|
+246. |  Turks and Caicos Islands |
+247. |                    Tuvalu |
+     +---------------------------+
+
+. count if missing(laborforcetotal)
+  32
+
+. * (b)
+. count if inflationconsumerpricesannual > gdpgrowthann
+> ual & !missing(inflationconsumerpricesannual,gdpgrowt
+> hannual)
+  68
+
+. * (c)
+. count if lifeexpectancyatbirthmaleyears > lifeexpecta
+> ncyatbirthfemaleyears & !missing(lifeexpectancyatbirt
+> hmaleyears,lifeexpectancyatbirthfemaleyears)
+  0
+
+. * (d)
+. count if lifeexpectancyatbirthmaleyears-lifeexpectanc
+> yatbirthfemaleyears < -5 & !missing(lifeexpectancyatb
+> irthmaleyears,lifeexpectancyatbirthfemaleyears)
+  93
+
+. * (e)
+. . scatter gdpconstant2010us laborforcetotal, xtitle("
+> Labor Force") ytitle("GDP") title("ScatterPlot") subt
+> itle("labor force vs GDP")
+
+. * (f)
+. regress gdpconstant2010us laborforcetotal
+
+      Source |       SS           df       MS      Numb
+> er of obs   =       218
+-------------+----------------------------------   F(1,
+>  216)       =    286.17
+       Model |  1.0257e+28         1  1.0257e+28   Prob
+>  > F        =    0.0000
+    Residual |  7.7420e+27       216  3.5843e+25   R-sq
+> uared       =    0.5699
+-------------+----------------------------------   Adj 
+> R-squared   =    0.5679
+       Total |  1.7999e+28       217  8.2945e+25   Root
+>  MSE        =    6.0e+12
+
+-------------------------------------------------------
+> -----------------------
+gdpconstan~s |      Coef.   Std. Err.      t    P>|t|  
+>    [95% Con                                          
+>            f. Interval]
+-------------+-----------------------------------------
+> -----------------------
+laborforce~l |   14494.98   856.8574    16.92   0.000  
+>    12806.11                                          
+>                16183.85
+       _cons |   5.60e+11   4.29e+11     1.30   0.193  
+>   -2.86e+11                                          
+>                1.41e+12
+-------------------------------------------------------
+> -----------------------
+
+. * (g)
+. . scatter gdpconstant2010us laborforcetotal, xtitle("
+> Labor Force") ytitle("GDP") title("ScatterPlot") subt
+> itle("labor force vs GDP") || lfit gdpconstant2010us 
+> laborforcetotal
+
+. * (i)
+. generate log_GDP = log(gdpconstant2010us)
+(30 missing values generated)
+
+. generate log_labor = log(laborforcetotal)
+(32 missing values generated)
+
+. . scatter log_GDP log_labor
+
+. 
+. log close
+      name:  <unnamed>
+       log:  C:\Users\yizong\Desktop\Zong_PSET3.log
+  log type:  text
+ closed on:  20 May 2018, 21:57:23
+-------------------------------------------------------
